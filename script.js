@@ -9,18 +9,18 @@ const firebaseConfig = {
   measurementId: "G-DGFMBR9Z0V"
 };
 
-firebase.initalizeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 function sendMessage() {
-    const message = document.getElementById('message').value;
-    db.ref('messages').push({ text: message, timestamp: Date.now() });
+  const message = document.getElementById('message').value;
+  db.ref('messages').push({ text: message, timestamp: Date.now() });
 }
 
 db.ref('messages').on('child_added', snapshot => {
-    const msg = snapshot.val().text;
-    const div = document.createElement('div');
-    div.className = 'msg';
-    div.textContent = msg;
-    document.getElementById('chat').appendChild(div);
+  const msg = snapshot.val().text;
+  const div = document.createElement('div');
+  div.className = 'msg';
+  div.textContent = msg;
+  document.getElementById('chat').appendChild(div);
 });
